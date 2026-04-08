@@ -1063,31 +1063,6 @@ const createLocationBuildings = (engine, currentLocation) => {
         // 기둥
         Bodies.rectangle(400, 400, 20, 240, {
           isStatic: true,
-          render: { fillStyle: "#8B4513" }
-        })
-      ];
-      break;
-      
-    case "mysteryRoom":
-      // 식민지 식물표본관 (고전적 건물)
-      building = [
-        // 메인 건물
-        Bodies.rectangle(500, 350, 300, 200, {
-          isStatic: true,
-          isSensor: true,
-          render: { fillStyle: "#F5DEB3", opacity: 0.7 }
-        }),
-        
-        // 지붕
-        Bodies.polygon(500, 250, 3, 100, {
-          isStatic: true,
-          isSensor: true,
-          render: { fillStyle: "#CD853F", opacity: 0.8 }
-        }),
-        
-        // 기둥
-        Bodies.rectangle(400, 400, 20, 240, {
-          isStatic: true,
           render: { fillStyle: "#D2B48C" }
         }),
         Bodies.rectangle(600, 400, 20, 240, {
@@ -1294,7 +1269,7 @@ const NPCModal = ({ locationData, onAnswerSubmit, onWritingSubmit, writingInput,
   if (!npc) return null;
   
   return (
-    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-6 rounded-lg shadow-lg z-50 w-[600px] max-h-[80vh] overflow-y-auto">
+    <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 sm:p-6 rounded-lg shadow-lg z-50 w-[min(92vw,600px)] max-h-[80vh] overflow-y-auto">
       <div className="flex items-start">
         <div className="text-4xl mr-4">{npc.avatar}</div>
         <div className="flex-1">

@@ -87,7 +87,7 @@ const Assessment: React.FC = () => {
   const currentQuestion = questions[currentQuestionIndex];
 
   return (
-    <div className="h-screen p-4 bg-gradient-to-b from-green-50 to-green-100 flex flex-col justify-center items-center">
+    <div className="min-h-[100dvh] p-4 bg-gradient-to-b from-green-50 to-green-100 flex flex-col justify-center items-center">
       <h1 className="text-2xl font-bold mb-4">Assessment</h1>
 
       {/* Progress Bar */}

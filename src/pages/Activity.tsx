@@ -304,12 +304,12 @@ const Activity: React.FC = () => {
   );
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-b from-green-50 to-green-100">
-      <header className="w-full bg-white shadow-md fixed top-0 z-10">
+    <div className="min-h-[100dvh] flex flex-col bg-gradient-to-b from-green-50 to-green-100">
+      <header className="w-full bg-white shadow-md fixed top-0 z-10 pt-[env(safe-area-inset-top)]">
         <h1 className="text-xl font-bold text-center py-3">Adventure Time!</h1>
       </header>
 
-      <main className="flex-1 pt-16 pb-16 px-4 overflow-y-auto">
+      <main className="flex-1 pt-[calc(4rem+env(safe-area-inset-top))] pb-[calc(4.5rem+env(safe-area-inset-bottom))] px-4 overflow-y-auto">
       {selectedTab === "activity" && (
           <div>
             {currentChallenge === "Reading Forest" ? (
@@ -403,7 +403,7 @@ const Activity: React.FC = () => {
         )}
       </main>
 
-      <footer className="w-full bg-white shadow-md fixed bottom-0 z-10">
+      <footer className="w-full bg-white shadow-md fixed bottom-0 z-10 pb-[env(safe-area-inset-bottom)]">
         <div className="flex justify-around py-3">
           {(["activity", "friends", "feed", "game", "SingaporeAdventure"] as Tab[]).map((tab) => (
             <button

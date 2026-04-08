@@ -1,7 +1,22 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
+import { signInWithEmailAndPassword, signInWithPopup, signInWithRedirect, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../firebaseConfig";
+
+const getAuthErrorMessage = (code?: string) => {
+  switch (code) {
+    case "auth/unauthorized-domain":
+      return "Google login is blocked for this domain. In Firebase Console > Authentication > Settings > Authorized domains, add this host (for local dev use localhost:5173).";
+    case "auth/popup-blocked":
+      return "Popup was blocked by the browser. Switching to redirect login.";
+    case "auth/popup-closed-by-user":
+      return "The Google login popup was closed before completing sign in.";
+    case "auth/network-request-failed":
+      return "Network error while contacting Google/Firebase. Check your connection and retry.";
+    default:
+      return "Google login failed. Please try again.";
+  }
+};
 
 const SignIn: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -37,14 +52,20 @@ const SignIn: React.FC = () => {
       navigate("/activity"); // Google 로그인 성공 시 이동할 경로
     } catch (error: any) {
       console.error("Google login error:", error);
-      alert("Google login failed. Please try again.");
+      const message = getAuthErrorMessage(error?.code);
+      alert(message);
+
+      if (error?.code === "auth/popup-blocked") {
+        await signInWithRedirect(auth, googleProvider);
+        return;
+      }
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-r from-blue-100 to-blue-300">
+    <div className="min-h-[100dvh] flex items-center justify-center bg-gradient-to-r from-blue-100 to-blue-300">
       <div className="w-full max-w-md bg-white rounded-lg shadow-md p-6">
         <h1 className="text-2xl font-bold mb-6 text-center text-blue-500">Sign In</h1>
 

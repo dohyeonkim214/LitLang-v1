@@ -17,7 +17,7 @@ const AnimationStyles = () => (
 
 // Image paths
 const mapImage = "/assets/map.png";
-const libraryImage = "/assets/library.png";
+const libraryImage = "/assets/bookcase.png";
 const characterImage = "/assets/character.png";
 const bookcaseImage = "/assets/bookcase.png";
 const bookImage = "/assets/book.png";
@@ -1217,7 +1217,7 @@ const BeyondThePages = () => {
   };
 
   return (
-    <div className="fixed inset-0 w-screen h-screen bg-amber-50 overflow-hidden flex flex-col">
+    <div className="fixed inset-0 w-screen min-h-[100dvh] bg-amber-50 overflow-hidden flex flex-col">
       <AnimationStyles />
       
       <div className="fixed top-0 left-0 bg-black text-white p-1 text-xs opacity-70 z-50">
@@ -1247,7 +1247,7 @@ const BeyondThePages = () => {
       
       {gameStarted && currentStep === "" && showLibrarian && (
         <div className="w-full h-full flex items-center justify-center relative">
-          <div className="absolute inset-0 bg-[url('/assets/library_interior.jpg')] bg-cover bg-center opacity-50"></div>
+          <div className="absolute inset-0 bg-[url('/assets/bookcase.png')] bg-cover bg-center opacity-50"></div>
           <div className="absolute inset-0 bg-gradient-to-b from-amber-900/30 to-amber-950/70"></div>
           
           <div className="relative z-10 w-full max-w-4xl px-6">
@@ -1403,14 +1403,14 @@ const BeyondThePages = () => {
           {/* 기존 외부 맵 화면 내용 유지 */}
           <div className="w-full h-full bg-amber-50 relative">
             {/* 배경 */}
-            <div className="absolute inset-0 bg-[url('/assets/map_background.jpg')] bg-cover bg-center opacity-30"></div>
+            <div className="absolute inset-0 bg-[url('/assets/map.png')] bg-cover bg-center opacity-30"></div>
             
             {/* 라이브러리 건물 - 화면 상단에 배치 */}
             <div 
-              className="absolute top-24 left-1/2 transform -translate-x-1/2 w-80 h-80 cursor-pointer hover:scale-105 transition-transform"
+              className="absolute top-24 left-1/2 transform -translate-x-1/2 w-56 h-56 sm:w-72 sm:h-72 lg:w-80 lg:h-80 cursor-pointer hover:scale-105 transition-transform"
               onClick={() => setCurrentStep("library")}
             >
-              <div className="w-full h-full bg-[url('/assets/library_building.png')] bg-contain bg-no-repeat bg-center"></div>
+              <div className="w-full h-full bg-[url('/assets/castle.png')] bg-contain bg-no-repeat bg-center"></div>
               <div className="absolute -bottom-12 left-0 right-0 text-center">
                 <div className="bg-amber-800 text-amber-50 px-6 py-3 rounded-full inline-block font-bold text-xl">
                   Enter Cultural Library
@@ -1423,7 +1423,7 @@ const BeyondThePages = () => {
               <h3 className="font-bold text-2xl text-amber-800 mb-4 text-center">Literary Adventures</h3>
               
               {/* 게임 액션 버튼 그리드 */}
-              <div className="grid grid-cols-2 gap-4 w-[600px]">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-[min(92vw,600px)]">
                 {/* 일일 챌린지 */}
                 <div className="bg-white p-5 rounded-lg shadow-md border border-amber-100 hover:shadow-lg transition-shadow">
                   <div className="flex items-center gap-3 mb-3">
